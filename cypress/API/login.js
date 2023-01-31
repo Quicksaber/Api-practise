@@ -1,26 +1,30 @@
 import  data  from '../fixtures/data.json'
+import color from "../support/colorLog";
 
 module.exports = {
     login({
         email = "",
         password = "",
+        testMessage = "",
         statusCode = 200
     }) {
         return cy.request({
             method : 'POST',
+            failOnStatusCode: false,
             url :  `${data.url.apiCypressVivify}login`,
             body : {
                 email : email,
                 password : password  
             }
         })
-        .then((req) => {
+        .then((response) => {
             // console.log(req)
-                    
-            expect(req.status).to.eql(statusCode)
-            expect(req.body.user.email).to.deep.equal(data.user.email)
+            typeof response.status != 'undefined' && response.status === statusCode
+                ? color.log(`${testMessage}`, 'success')
+                : color.log(`${testMessage} ${JSON.stringify(response)}`, 'error');
+            expect(response.status).to.eql(statusCode)
             
-            return req.body.token;
+            return response.body.token;
         })
 
     }
