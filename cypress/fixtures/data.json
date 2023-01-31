@@ -1,0 +1,10 @@
+{
+    "user" : {
+        "email" : "raziel1412@gmail.com",
+        "password"  : "sifra123"
+    },
+
+    "url" : {
+        "apiCypressVivify" : "https://cypress-api.vivifyscrum-stage.com/api/v2/"
+    }
+}
