@@ -15,7 +15,7 @@ describe("api test", () => {
   it("apiLogin-1", () => {
     loginApi
       .login({ 
-        email: "raziel141221345643@gmail.com",
+        email: faker.internet.email(),
         password: data.user.password,
         testMessage : Cypress.currentTest.title,
         statusCode : 401
