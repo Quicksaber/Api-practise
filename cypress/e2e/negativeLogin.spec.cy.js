@@ -11,17 +11,5 @@ describe("api test", () => {
     cy.visit("");
   });
 
-  let accessToken;
-  it("apiLogin-1", () => {
-    loginApi
-      .login({ 
-        email: faker.internet.email(),
-        password: data.user.password,
-        testMessage : Cypress.currentTest.title,
-        statusCode : 401
-      })
-      .then((response) => {
-        accessToken = response;
-      });
-  });
+  
 });

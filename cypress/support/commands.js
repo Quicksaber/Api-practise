@@ -31,7 +31,7 @@ Cypress.Commands.add('sessionLogin', (email, password) => {
         cy.request({
             method : 'POST',
             failOnStatusCode: false,
-            url :  `${Cypress.env('apiLoginCypressVivify')}login`,
+            url :  `${Cypress.env('apiCypressVivify')}login`,
             body : {
                 email : email,
                 password : password  

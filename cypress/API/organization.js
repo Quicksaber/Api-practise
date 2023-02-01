@@ -10,7 +10,7 @@ module.exports = {
     return cy.request({
       method: "POST",
       failOnStatusCode: false,
-      url: `${data.url.apiCypressVivify}organizations`,
+      url: `${Cypress.env('apiCypressVivify')}organizations`,
       body: {
         name: title
       },
@@ -34,13 +34,13 @@ module.exports = {
     return cy.request({
         method: "GET",
         failOnStatusCode: false,
-        url: `${data.url.apiCypressVivify}my-organizations`,
+        url: `${Cypress.env('apiCypressVivify')}my-organizations`,
         headers: {
             Authorization: `Bearer ${window.localStorage.getItem('token')}`
           }
     })
     .then((response) => {
-        console.log(response.body)
+        // console.log(response.body)
         // expect(response.status).to.eql(statusCode)
         // return response.body
         let result = response.body.filter(orgName => (
@@ -62,7 +62,7 @@ module.exports = {
         return cy.request({
             method : 'PUT',
             failOnStatusCode: false,
-            url :  `${data.url.apiCypressVivify}organizations/${id}/status`,
+            url :  `${Cypress.env('apiCypressVivify')}organizations/${id}/status`,
             body : {
                 status : status  
             },
@@ -82,7 +82,7 @@ module.exports = {
         return cy.request({
             method : 'POST',
             failOnStatusCode: false,
-            url :  `${data.url.apiCypressVivify}organizations/${id}`,
+            url :  `${Cypress.env('apiCypressVivify')}organizations/${id}`,
             body : {
                 passwordOrEmail : password  
             },
@@ -92,8 +92,55 @@ module.exports = {
         }).then((response) => {
             expect(response.status).to.eql(statusCode)
         })
-    }
+    },
 
+    updateOrganization({
+        oldName = "",
+        newName = "edited",
+        id = "",
+        statusCode = 200
+    }) {
+        return cy.request({
+            method : 'PUT',
+            failOnStatusCode: false,
+            url :  `${Cypress.env('apiCypressVivify')}organizations/${id}`,
+            body : {
+                name : `${newName}${oldName}` 
+            },
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem('token')}` 
+            }
+        }).then((response) => {
+            expect(response.status).to.eql(statusCode)
+        })
+    },
+
+    login({
+        email = "",
+        password = "",
+        testMessage = "",
+        statusCode = 200
+    }) {
+        return cy.request({
+            method : 'POST',
+            failOnStatusCode: false,
+            url :  `${data.url.apiCypressVivify}login`,
+            body : {
+                email : email,
+                password : password  
+            }
+        })
+        .then((response) => {
+            // console.log(req)
+            typeof response.status != 'undefined' && response.status === statusCode
+                ? color.log(`${testMessage}`, 'success')
+                : color.log(`${testMessage} ${JSON.stringify(response)}`, 'error');
+            expect(response.status).to.eql(statusCode)
+            
+            return response.body.token;
+        })
+
+    }
 }   
 
 

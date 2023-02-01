@@ -1,10 +1,5 @@
-// import loginApi from "../API/login";
-import data from "../fixtures/data.json";
-// import createAPI from "../API/createOrg";
-// import myOrgs from "../API/myOrgs";
-// import deleteOrg from "../API/deleteOrg";
-// import archiveOrg from "../API/archiveOrg";
-import organization from "../API/organization"
+import data from "../../fixtures/data.json";
+import organization from "../../API/organization"
 
 describe("api test", () => {
   beforeEach(() => {
@@ -15,23 +10,15 @@ describe("api test", () => {
     organization.myOrgs({
       name : "org1",
     }).then((response) => {
+      console.log(response)
       for (let i = 0; i < response.length; i++) {
         organization.deleteOrganization({
-          password: data.user.password,
+          password: Cypress.env('password'),
           id: response[i].id,
         });
       }
     });
   });
-
-  // let accessToken;
-  // it("GET token", () => {
-  //   loginApi
-  //     .login({ email: data.user.email, password: data.user.password })
-  //     .then((response) => {
-  //       accessToken = response;
-  //     });
-  // });
 
   let orgID;
   it("Create org", () => {
@@ -42,6 +29,18 @@ describe("api test", () => {
       orgID = response;
     });
   });
+
+  it('update organization', () => {
+    organization.myOrgs({})
+    .then((response) => {
+      for(let i = 0; i < response.length; i++){
+        organization.updateOrganization({
+          oldName : response[i].name,
+          id : response[i].id
+        })
+      }
+    })
+  })
 
   // it('Archive organizations', () => {
   //   organization.myOrgs({})
@@ -62,17 +61,11 @@ describe("api test", () => {
   //     for(let i = 0; i < response.length; i++){
   //       if(response[i].status === "archived"){
   //         organization.deleteOrganization({
-  //           password : data.user.password,
+  //           password : Cypress.env('password'),
   //           id : response[i].id
   //         })
   //       }
   //     }
-  //   })
-  // })
-
-  // it('my orgs', () => {
-  //   organization.myOrgs({}).then((response) => {
-  //     console.log(response[0].id)
   //   })
   // })
 
