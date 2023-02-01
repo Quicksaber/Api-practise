@@ -16,7 +16,7 @@ module.exports = {
         })
         .then((response) => {
             // console.log(response.body)
-            // expect(response.status).to.eql(statusCode)
+            expect(response.status).to.eql(statusCode)
             // return response.body
             let result = response.body.filter(orgName => (
                 orgName.name === name

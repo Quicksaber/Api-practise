@@ -1,21 +1,22 @@
-import loginApi from "../API/login";
+// import loginApi from "../API/login";
 import data from "../fixtures/data.json";
-import createAPI from "../API/createOrg";
-import myOrgs from "../API/myOrgs";
-import deleteOrg from "../API/deleteOrg";
-import archiveOrg from "../API/archiveOrg";
+// import createAPI from "../API/createOrg";
+// import myOrgs from "../API/myOrgs";
+// import deleteOrg from "../API/deleteOrg";
+// import archiveOrg from "../API/archiveOrg";
+import organization from "../API/organization"
 
 describe("api test", () => {
-  before(() => {
-    cy.visit("");
+  beforeEach(() => {
+    cy.sessionLogin(Cypress.env('email'), Cypress.env('password'))
   });
 
   after(() => {
-    myOrgs.myOrgs({
-      name : "org1"
+    organization.myOrgs({
+      name : "org1",
     }).then((response) => {
       for (let i = 0; i < response.length; i++) {
-        deleteOrg.deleteOrganization({
+        organization.deleteOrganization({
           password: data.user.password,
           id: response[i].id,
         });
@@ -23,19 +24,18 @@ describe("api test", () => {
     });
   });
 
-  let accessToken;
-  it("GET token", () => {
-    loginApi
-      .login({ email: data.user.email, password: data.user.password })
-      .then((response) => {
-        accessToken = response;
-      });
-  });
+  // let accessToken;
+  // it("GET token", () => {
+  //   loginApi
+  //     .login({ email: data.user.email, password: data.user.password })
+  //     .then((response) => {
+  //       accessToken = response;
+  //     });
+  // });
 
   let orgID;
   it("Create org", () => {
-    createAPI.createOrganization({
-      token : accessToken,
+    organization.createOrganization({
       title : "testOrg",
       testMessage : Cypress.currentTest.title
     }).then((response) => {
@@ -44,11 +44,11 @@ describe("api test", () => {
   });
 
   // it('Archive organizations', () => {
-  //   myOrgs.myOrgs({})
+  //   organization.myOrgs({})
   //   .then((response) => {
   //     for(let i=0; i < response.length; i++){
   //       if(response[i].status === "active"){
-  //         archiveOrg.archiveOrganization({
+  //         organization.archiveOrganization({
   //           id : response[i].id
   //         })
   //       }
@@ -57,11 +57,11 @@ describe("api test", () => {
   // })
 
   // it('delete only archived organizations', () => {
-  //   myOrgs.myOrgs({})
+  //   organization.myOrgs({})
   //   .then((response) => {
   //     for(let i = 0; i < response.length; i++){
   //       if(response[i].status === "archived"){
-  //         deleteOrg.deleteOrganization({
+  //         organization.deleteOrganization({
   //           password : data.user.password,
   //           id : response[i].id
   //         })
@@ -71,7 +71,7 @@ describe("api test", () => {
   // })
 
   // it('my orgs', () => {
-  //   myOrgs.myOrgs({}).then((response) => {
+  //   organization.myOrgs({}).then((response) => {
   //     console.log(response[0].id)
   //   })
   // })
