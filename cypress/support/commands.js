@@ -37,7 +37,6 @@ Cypress.Commands.add('sessionLogin', (email, password) => {
                 password : password  
             } 
         }).then((response) => {
-            console.log(response);
             window.localStorage.setItem("user_id", response.body.user.id);
             window.localStorage.setItem("user", JSON.stringify(response.body.user));
             window.localStorage.setItem("token", response.body.token);

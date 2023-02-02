@@ -1,8 +1,26 @@
 {
   "devDependencies": {
-    "cypress": "^12.4.1"
+    "cypress": "^12.5.0"
   },
   "dependencies": {
     "faker": "^5.5.3"
-  }
+  },
+  "name": "api-practise",
+  "version": "1.0.0",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:run": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Quicksaber/Api-practise.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Quicksaber/Api-practise/issues"
+  },
+  "homepage": "https://github.com/Quicksaber/Api-practise#readme",
+  "description": ""
 }

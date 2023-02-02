@@ -6,5 +6,29 @@
 
     "url" : {
         "apiCypressVivify" : "https://cypress-api.vivifyscrum-stage.com/api/v2/"
+    },
+
+    "string" : {
+        "emptyString" : "",
+        "spaceString" : " Test",
+        "onlySpace" : "     "
+    },
+
+    "orgName" : {
+        "org1" : "org1"
+    },
+
+    "foreignOrgId" : {
+        "orgId1" : 25205
+    },
+
+    "boardTypes" : {
+        "scrumBoard" : "scrum_board",
+        "kanbanBoard" : "kanban_board"
+    },
+
+    "orgStatus" : {
+        "orgActive" : "active",
+        "orgArchived" : "archived"
     }
 }
