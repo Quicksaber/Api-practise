@@ -11,7 +11,6 @@ describe("negative Org create test", () => {
     organization.myOrgs({
       name : data.orgName.org1,
     }).then((response) => {
-      console.log(response)
       for (let i = 0; i < response.length; i++) {
         organization.deleteOrganization({
           password: Cypress.env('password'),
