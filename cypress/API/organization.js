@@ -1,10 +1,12 @@
 import color from "../support/colorLog";
+import { randomStringGenerator } from "../support/generator"
+import data from "../fixtures/data.json"
 
 module.exports = {
   createOrganization({ 
-    title = "testCompany",
+    title = randomStringGenerator(7),
     statusCode = 201,
-    testMessage = "",
+    testMessage = Cypress.currentTest.title,
     token = window.localStorage.getItem('token')
     }) {
     return cy.request({
@@ -28,7 +30,8 @@ module.exports = {
 
   myOrgs({
     statusCode = 200,
-    name = ""
+    name = data.string.emptyString,
+    testMessage = Cypress.currentTest.title,
 }){
     return cy.request({
         method: "GET",
@@ -39,6 +42,10 @@ module.exports = {
           }
     })
     .then((response) => {
+        typeof response.status != 'undefined' && response.status === statusCode
+                ? color.log(`${testMessage}`, 'success')
+                : color.log(`${testMessage} ${JSON.stringify(response)}`, 'error');
+        expect(response.status).to.eql(statusCode)        
         let result = response.body.filter(orgName => (
             orgName.name === name
         ))
@@ -52,8 +59,9 @@ module.exports = {
 
     archiveOrganization({
         statusCode = 200,
-        status = "archived",
-        id = ""
+        status = data.orgStatus.orgArchived,
+        id = data.string.emptyString,
+        testMessage = Cypress.currentTest.title,
     }){
         return cy.request({
             method : 'PUT',
@@ -66,14 +74,18 @@ module.exports = {
                 Authorization: `Bearer ${window.localStorage.getItem('token')}`
               }
         }).then((response) => {
+            typeof response.status != 'undefined' && response.status === statusCode
+                ? color.log(`${testMessage}`, 'success')
+                : color.log(`${testMessage} ${JSON.stringify(response)}`, 'error');
             expect(response.status).to.eql(statusCode)
         })
     },
 
     deleteOrganization({
-        password = "",
-        id = "",
-        statusCode = 201
+        password = data.string.emptyString,
+        id = data.string.emptyString,
+        statusCode = 201,
+        testMessage = Cypress.currentTest.title,
     }) {
         return cy.request({
             method : 'POST',
@@ -86,15 +98,19 @@ module.exports = {
                 Authorization: `Bearer ${window.localStorage.getItem('token')}` 
               }
         }).then((response) => {
+            typeof response.status != 'undefined' && response.status === statusCode
+                ? color.log(`${testMessage}`, 'success')
+                : color.log(`${testMessage} ${JSON.stringify(response)}`, 'error');
             expect(response.status).to.eql(statusCode)
         })
     },
 
     updateOrganization({
-        oldName = "",
+        oldName = data.string.emptyString,
         newName = "edited",
-        id = "",
-        statusCode = 200
+        id = data.string.emptyString,
+        statusCode = 200,
+        testMessage = Cypress.currentTest.title,
     }) {
         return cy.request({
             method : 'PUT',
@@ -107,6 +123,9 @@ module.exports = {
                 Authorization: `Bearer ${window.localStorage.getItem('token')}` 
             }
         }).then((response) => {
+            typeof response.status != 'undefined' && response.status === statusCode
+                ? color.log(`${testMessage}`, 'success')
+                : color.log(`${testMessage} ${JSON.stringify(response)}`, 'error');
             expect(response.status).to.eql(statusCode)
         })
     },

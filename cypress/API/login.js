@@ -3,9 +3,9 @@ import color from "../support/colorLog";
 
 module.exports = {
     login({
-        email = "",
-        password = "",
-        testMessage = "",
+        email = data.string.emptyString,
+        password = data.string.emptyString,
+        testMessage = data.string.emptyString,
         statusCode = 200
     }) {
         return cy.request({

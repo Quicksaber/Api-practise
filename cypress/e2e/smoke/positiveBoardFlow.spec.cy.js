@@ -1,8 +1,10 @@
 import organization from "../../API/organization";
 import board from "../../API/boards";
 import apiLogin from "../../API/login"
+import { randomStringGenerator } from "../../support/generator";
+import data from "../../fixtures/data.json"
 
-describe("api test/boards", () => {
+describe("api positive test/boards", () => {
   beforeEach(() => {
     cy.sessionLogin(Cypress.env("email"), Cypress.env("password"));
   });
@@ -15,8 +17,6 @@ describe("api test/boards", () => {
       testMessage: Cypress.currentTest.title
     }).then((response) => {
       organization.createOrganization({
-        title: "boardTestOrg",
-        testMessage: Cypress.currentTest.title,
         token: response
       })
       .then((response) => {
@@ -28,7 +28,7 @@ describe("api test/boards", () => {
   after(() => {
     organization
       .myOrgs({
-        name: "org1",
+        name: data.orgName.org1,
       })
       .then((response) => {
         for (let i = 0; i < response.length; i++) {
@@ -40,30 +40,17 @@ describe("api test/boards", () => {
       });
   });
 
-  // let orgID;
-  // it("create org", () => {
-  //   organization
-  //     .createOrganization({
-  //       title: "boardTestOrg",
-  //       testMessage: Cypress.currentTest.title,
-  //     })
-  //     .then((response) => {
-  //       orgID = response;
-  //     });
-  // });
-
   let boardId;
   it("Create new board CB-PO-01", () => {
     board.createBoard({
         orgId: orgID,
-        name: "testBoard",
       })
       .then((response) => {
         boardId = response.body.id;
       });
       board.createBoard({
         orgId: orgID,
-        name: "testBoard_2",
+        name: randomStringGenerator(7),
       });
   });
 
@@ -75,7 +62,7 @@ describe("api test/boards", () => {
 
   it("Change board type CB-PO-03", () => {
     board.changeBoardType({
-      type: "kanban_board",
+      type: data.boardTypes.kanbanBoard,
       boardId: boardId,
     });
   });

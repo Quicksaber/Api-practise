@@ -1,12 +1,14 @@
 import data from "../fixtures/data.json";
 import color from "../support/colorLog";
+import  {randomStringGenerator} from "../support/generator";
 
 module.exports = {
     createBoard({
-        name = "testBoard",
+        name = randomStringGenerator(7),
         type = "scrum_board",
-        orgId = "",
-        statusCode = 201
+        orgId = data.string.emptyString,
+        statusCode = 201,
+        testMessage = Cypress.currentTest.title,
     }){
         return cy.request({
             method : 'POST',
@@ -21,13 +23,17 @@ module.exports = {
                 Authorization: `Bearer ${window.localStorage.getItem('token')}` 
             }
         }).then((response) => {
+            typeof response.status != 'undefined' && response.status === statusCode
+                ? color.log(`${testMessage}`, 'success')
+                : color.log(`${testMessage} ${JSON.stringify(response)}`, 'error');
             expect(response.status).to.eql(statusCode)
         })
     },
 
     getBoard({
-        orgId = "",
-        statusCode = 200
+        orgId = data.string.emptyString,
+        statusCode = 200,
+        testMessage = Cypress.currentTest.title,
     }){
         return cy.request({
             method : 'GET',
@@ -37,15 +43,18 @@ module.exports = {
                 Authorization: `Bearer ${window.localStorage.getItem('token')}` 
             }
         }).then((response) => {
-            console.log(response.body)
+            typeof response.status != 'undefined' && response.status === statusCode
+                ? color.log(`${testMessage}`, 'success')
+                : color.log(`${testMessage} ${JSON.stringify(response)}`, 'error');
             expect(response.status).to.eql(statusCode)
         })
     },
 
     changeBoardType({
-        type = "",
-        boardId = "",
-        statusCode = 200
+        type = data.string.emptyString,
+        boardId = data.string.emptyString,
+        statusCode = 200,
+        testMessage = Cypress.currentTest.title,
     }) {
         return cy.request({
             method : 'PUT',
@@ -58,13 +67,17 @@ module.exports = {
                 Authorization: `Bearer ${window.localStorage.getItem('token')}` 
             }
         }).then((response) => {
+            typeof response.status != 'undefined' && response.status === statusCode
+                ? color.log(`${testMessage}`, 'success')
+                : color.log(`${testMessage} ${JSON.stringify(response)}`, 'error');
             expect(response.status).to.eql(statusCode)
         })
     },
 
     deleteBoard({
-        boardId = "",
-        statusCode = 200
+        boardId = data.string.emptyString,
+        statusCode = 200,
+        testMessage = Cypress.currentTest.title,
     }) {
         return cy.request({
             method : 'DELETE',
@@ -74,6 +87,9 @@ module.exports = {
                 Authorization: `Bearer ${window.localStorage.getItem('token')}` 
             }
         }).then((response) => {
+            typeof response.status != 'undefined' && response.status === statusCode
+                ? color.log(`${testMessage}`, 'success')
+                : color.log(`${testMessage} ${JSON.stringify(response)}`, 'error');
             expect(response.status).to.eql(statusCode)
         })
     }

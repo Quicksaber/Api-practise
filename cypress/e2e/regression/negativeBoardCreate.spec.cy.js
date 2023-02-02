@@ -1,6 +1,8 @@
 import organization from "../../API/organization";
 import board from "../../API/boards";
 import apiLogin from "../../API/login"
+import  {randomStringGenerator} from "../../support/generator";
+import data from "../../fixtures/data.json"
 
 describe("api negative test/boards", () => {
   beforeEach(() => {
@@ -15,7 +17,7 @@ describe("api negative test/boards", () => {
       testMessage: Cypress.currentTest.title
     }).then((response) => {
       organization.createOrganization({
-        title: "boardTestOrg",
+        title: randomStringGenerator(6),
         testMessage: Cypress.currentTest.title,
         token: response
       })
@@ -28,7 +30,7 @@ describe("api negative test/boards", () => {
   after(() => {
     organization
       .myOrgs({
-        name: "org1",
+        name: data.orgName.org1,
       })
       .then((response) => {
         for (let i = 0; i < response.length; i++) {
@@ -43,7 +45,7 @@ describe("api negative test/boards", () => {
   it("Create board with empty string CB-NE-01", () => {
         board.createBoard({
           orgId: orgID,
-          name: "",
+          name: data.string.emptyString,
           statusCode: 200,
         });
   });
@@ -59,7 +61,7 @@ describe("api negative test/boards", () => {
   it("Create new board with 3x spaces for name CB-NE-03", () => {
     board.createBoard({
         orgId: orgID,
-        name: "   ",
+        name: data.string.onlySpace,
         statusCode: 200,
       });
   });
@@ -67,7 +69,7 @@ describe("api negative test/boards", () => {
   it("Create new board with space char before string for name CB-NE-04", () => {
     board.createBoard({
         orgId: orgID,
-        name: " qwert",
+        name: ` ${randomStringGenerator(5)}`,
         statusCode: 201,
       });
   });
@@ -75,7 +77,7 @@ describe("api negative test/boards", () => {
   it("Create new board with 50+ chars for name CB-NE-05", () => {
     board.createBoard({
         orgId: orgID,
-        name: "wqwqwqwqwqkjasjdlashfjkhjq1wqwqwqwqqwqqwqwwqwqqwqwqwqwqwwqwqwqwqwqwqwqwqwqwqwqwqwqwqwwqwqwqwdskfhdjskhfjkdshfkjdshfjkashdjksadbjksabndjksabdjksahbjklhwjkrhejkabfdkjsanbfkbasjkd",
+        name: `${randomStringGenerator(51)}`,
         statusCode: 201,
       });
   });
@@ -83,7 +85,7 @@ describe("api negative test/boards", () => {
   it("Create new board with 255+ chars for name CB-NE-06", () => {
     board.createBoard({
         orgId: orgID,
-        name: "zwqwqwqwqwqkjasjdlashfjkhjqwqwqwqwqqwqqwqwwqwqqwqwqwqwqwwqwqwqwqwqwqwqwqwqwqwqwqwqwqwwqwqwqwdskfhdjskhfjkdshfkjdshfjkashdjksadbjksabndjksabdjksahbjklhwjkrhejkabfdkjsanbfkbasjkdbfkjsadbnfkjnsan cjkasbldjkbaskjcjaks jaskbdjbjksabbhjdashdkjashdkjjkhsdjaksdhak",
+        name: `${randomStringGenerator(256)}`,
         statusCode: 200,
       });
   });
@@ -91,21 +93,21 @@ describe("api negative test/boards", () => {
   it('Create new board with valid name and without type CB-NE-07', () => {
     board.createBoard({
         orgId : orgID,
-        type : "",
+        type : data.string.emptyString,
         statusCode : 200
     })
   })
 
   it('Create new board in another user Org CB-NE-08', () => {
     board.createBoard({
-        orgId : 25205,
+        orgId : data.foreignOrgId.orgId1,
         statusCode : 403
     })
   })
 
   it('Get board in another user Org CB-NE-09', () => {
     board.getBoard({
-        orgId : 25205,
+        orgId : data.foreignOrgId.orgId1,
         statusCode : 403
     })
   })
