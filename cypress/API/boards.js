@@ -5,7 +5,7 @@ import  {randomStringGenerator} from "../support/generator";
 module.exports = {
     createBoard({
         name = randomStringGenerator(7),
-        type = "scrum_board",
+        type = data.boardTypes.scrumBoard,
         orgId = data.string.emptyString,
         statusCode = 201,
         testMessage = Cypress.currentTest.title,
