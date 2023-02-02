@@ -3,7 +3,7 @@ import color from "../support/colorLog";
 
 module.exports = {
     createBoard({
-        name = "",
+        name = "testBoard",
         type = "scrum_board",
         orgId = "",
         statusCode = 201
@@ -21,7 +21,23 @@ module.exports = {
                 Authorization: `Bearer ${window.localStorage.getItem('token')}` 
             }
         }).then((response) => {
-            console.log(response)
+            expect(response.status).to.eql(statusCode)
+        })
+    },
+
+    getBoard({
+        orgId = "",
+        statusCode = 200
+    }){
+        return cy.request({
+            method : 'GET',
+            failOnStatusCode : false,
+            url : `${Cypress.env('apiCypressVivify')}organizations/${orgId}/boards-data`,
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem('token')}` 
+            }
+        }).then((response) => {
+            console.log(response.body)
             expect(response.status).to.eql(statusCode)
         })
     },

@@ -9,7 +9,8 @@ module.exports = defineConfig({
     env : {
       email : 'raziel1412@gmail.com',
       password  : 'sifra123',
-      apiCypressVivify : 'https://cypress-api.vivifyscrum-stage.com/api/v2/'
-    }
+      apiCypressVivify : 'https://cypress-api.vivifyscrum-stage.com/api/v2/',
+    },
+    video : false
   },
 });

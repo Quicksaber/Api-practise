@@ -1,4 +1,3 @@
-import data from "../fixtures/data.json";
 import color from "../support/colorLog";
 
 module.exports = {
@@ -6,6 +5,7 @@ module.exports = {
     title = "testCompany",
     statusCode = 201,
     testMessage = "",
+    token = window.localStorage.getItem('token')
     }) {
     return cy.request({
       method: "POST",
@@ -15,10 +15,9 @@ module.exports = {
         name: title
       },
       headers: {
-        Authorization: `Bearer ${window.localStorage.getItem('token')}`
+        Authorization: `Bearer ${token}`
       }
     }).then((response) => {
-        // console.log(response)
         typeof response.status != 'undefined' && response.status === statusCode
                 ? color.log(`${testMessage}`, 'success')
                 : color.log(`${testMessage} ${JSON.stringify(response)}`, 'error');
@@ -40,9 +39,6 @@ module.exports = {
           }
     })
     .then((response) => {
-        // console.log(response.body)
-        // expect(response.status).to.eql(statusCode)
-        // return response.body
         let result = response.body.filter(orgName => (
             orgName.name === name
         ))
@@ -114,33 +110,6 @@ module.exports = {
             expect(response.status).to.eql(statusCode)
         })
     },
-
-    login({
-        email = "",
-        password = "",
-        testMessage = "",
-        statusCode = 200
-    }) {
-        return cy.request({
-            method : 'POST',
-            failOnStatusCode: false,
-            url :  `${data.url.apiCypressVivify}login`,
-            body : {
-                email : email,
-                password : password  
-            }
-        })
-        .then((response) => {
-            // console.log(req)
-            typeof response.status != 'undefined' && response.status === statusCode
-                ? color.log(`${testMessage}`, 'success')
-                : color.log(`${testMessage} ${JSON.stringify(response)}`, 'error');
-            expect(response.status).to.eql(statusCode)
-            
-            return response.body.token;
-        })
-
-    }
 }   
 
 

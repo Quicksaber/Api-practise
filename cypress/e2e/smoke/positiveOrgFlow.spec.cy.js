@@ -1,4 +1,3 @@
-import data from "../../fixtures/data.json";
 import organization from "../../API/organization"
 
 describe("api test", () => {
@@ -21,7 +20,7 @@ describe("api test", () => {
   });
 
   let orgID;
-  it("Create org", () => {
+  it("Create org with valid name CO-PO-01", () => {
     organization.createOrganization({
       title : "testOrg",
       testMessage : Cypress.currentTest.title
@@ -30,7 +29,7 @@ describe("api test", () => {
     });
   });
 
-  it('update organization', () => {
+  it('update organization CO-PO-02', () => {
     organization.myOrgs({})
     .then((response) => {
       for(let i = 0; i < response.length; i++){
@@ -42,7 +41,7 @@ describe("api test", () => {
     })
   })
 
-  // it('Archive organizations', () => {
+  // it('Archive organizations CO-PO-03', () => {
   //   organization.myOrgs({})
   //   .then((response) => {
   //     for(let i=0; i < response.length; i++){
@@ -55,7 +54,7 @@ describe("api test", () => {
   //   })
   // })
 
-  // it('delete only archived organizations', () => {
+  // it('delete only archived organizations CO-PO-04', () => {
   //   organization.myOrgs({})
   //   .then((response) => {
   //     for(let i = 0; i < response.length; i++){

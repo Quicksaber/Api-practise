@@ -19,7 +19,7 @@ describe("api test", () => {
     });
   });
 
-  it("Create org with empty string as title", () => {
+  it("Create org with empty string as title CO-NE-01", () => {
     organization.createOrganization({
       title : "",
       testMessage : Cypress.currentTest.title,
@@ -27,7 +27,7 @@ describe("api test", () => {
     })
   });
 
-  it("Create org with with null for title", () => {
+  it("Create org with with null for title CO-NE-02", () => {
     organization.createOrganization({
       title : null,
       testMessage : Cypress.currentTest.title,
@@ -35,7 +35,7 @@ describe("api test", () => {
     })
   });
 
-  it("Create org with with 3x spaces for title", () => {
+  it("Create org with with 3x spaces for title CO-NE-03", () => {
     organization.createOrganization({
       title : "   ",
       testMessage : Cypress.currentTest.title,
@@ -43,7 +43,7 @@ describe("api test", () => {
     })
   });
 
-  it("Create org with with space before string for title", () => {
+  it("Create org with with space before string for title CO-NE-04", () => {
     organization.createOrganization({
       title : "    qwert",
       testMessage : Cypress.currentTest.title,
@@ -51,7 +51,7 @@ describe("api test", () => {
     })
   });
 
-  it("Create org with with 50+ chars for title", () => {
+  it("Create org with with 50+ chars for title CO-NE-05", () => {
     organization.createOrganization({
       title : "qpqpqpqpqpqpqpqpqpqpqpqpqpqpqpqpqpqpqpqpqpqpqpqpqpqqq",
       testMessage : Cypress.currentTest.title,
@@ -59,7 +59,7 @@ describe("api test", () => {
     })
   });
 
-  it("Create org with with 255+ chars for title", () => {
+  it("Create org with with 255+ chars for title CO-NE-06", () => {
     organization.createOrganization({
       title : "zwqwqwqwqwqkjasjdlashfjkhjqwqwqwqwqqwqqwqwwqwqqwqwqwqwqwwqwqwqwqwqwqwqwqwqwqwqwqwqwqwwqwqwqwdskfhdjskhfjkdshfkjdshfjkashdjksadbjksabndjksabdjksahbjklhwjkrhejkabfdkjsanbfkbasjkdbfkjsadbnfkjnsan cjkasbldjkbaskjcjaks jaskbdjbjksabbhjdashdkjashdkjjkhsdjaksdhak",
       testMessage : Cypress.currentTest.title,
