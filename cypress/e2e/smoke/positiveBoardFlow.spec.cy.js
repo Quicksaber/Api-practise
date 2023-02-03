@@ -50,14 +50,16 @@ describe("api positive test/boards", () => {
       .then((response) => {
         boardId = response.body.id;
       });
-    board.createBoard({
-      orgId: orgID,
-      name: randomStringGenerator(7),
+  });
+
+  it("CB-PO-02 Get single board", () => {
+    board.getSingleBoard({
+      boardId: boardId,
     });
   });
 
-  it("CB-PO-02 Get boards", () => {
-    board.getBoard({
+  it("CB-PO-02 Get all boards", () => {
+    board.getAllBoards({
       orgId: orgID,
     });
   });

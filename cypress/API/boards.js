@@ -9,6 +9,7 @@ module.exports = {
     orgId = data.string.emptyString,
     statusCode = 201,
     testMessage = Cypress.currentTest.title,
+    token = window.localStorage.getItem("token"),
   }) {
     return cy
       .request({
@@ -21,7 +22,7 @@ module.exports = {
           organization_id: orgId,
         },
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
@@ -30,10 +31,32 @@ module.exports = {
       });
   },
 
-  getBoard({
+  getSingleBoard({
+    boardId = data.string.emptyString,
+    statusCode = 200,
+    testMessage = Cypress.currentTest.title,
+    token = window.localStorage.getItem("token"),
+  }) {
+    return cy
+      .request({
+        method: "GET",
+        failOnStatusCode: false,
+        url: `${Cypress.env("apiCypressVivify")}boards/${boardId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        colorValidation(response, testMessage, statusCode);
+      });
+  },
+
+  getAllBoards({
     orgId = data.string.emptyString,
     statusCode = 200,
     testMessage = Cypress.currentTest.title,
+    token = window.localStorage.getItem("token"),
   }) {
     return cy
       .request({
@@ -43,12 +66,11 @@ module.exports = {
           "apiCypressVivify"
         )}organizations/${orgId}/boards-data`,
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
         colorValidation(response, testMessage, statusCode);
-        expect(response.status).to.eql(statusCode);
       });
   },
 
@@ -57,6 +79,7 @@ module.exports = {
     boardId = data.string.emptyString,
     statusCode = 200,
     testMessage = Cypress.currentTest.title,
+    token = window.localStorage.getItem("token"),
   }) {
     return cy
       .request({
@@ -67,12 +90,11 @@ module.exports = {
           type: type,
         },
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
         colorValidation(response, testMessage, statusCode);
-        expect(response.status).to.eql(statusCode);
       });
   },
 
@@ -80,6 +102,7 @@ module.exports = {
     boardId = data.string.emptyString,
     statusCode = 200,
     testMessage = Cypress.currentTest.title,
+    token = window.localStorage.getItem("token"),
   }) {
     return cy
       .request({
@@ -87,12 +110,11 @@ module.exports = {
         failOnStatusCode: false,
         url: `${Cypress.env("apiCypressVivify")}boards/${boardId}`,
         headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
         colorValidation(response, testMessage, statusCode);
-        expect(response.status).to.eql(statusCode);
       });
   },
 };

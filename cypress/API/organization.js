@@ -23,7 +23,6 @@ module.exports = {
       })
       .then((response) => {
         colorValidation(response, testMessage, statusCode);
-        expect(response.status).to.eql(statusCode);
         return response.body.id;
       });
   },
@@ -44,7 +43,6 @@ module.exports = {
       })
       .then((response) => {
         colorValidation(response, testMessage, statusCode);
-        expect(response.status).to.eql(statusCode);
         let result = response.body.filter((orgName) => orgName.name === name);
         if (result.length > 0) {
           return result;
@@ -74,7 +72,6 @@ module.exports = {
       })
       .then((response) => {
         colorValidation(response, testMessage, statusCode);
-        expect(response.status).to.eql(statusCode);
       });
   },
 
@@ -98,7 +95,6 @@ module.exports = {
       })
       .then((response) => {
         colorValidation(response, testMessage, statusCode);
-        expect(response.status).to.eql(statusCode);
       });
   },
 
@@ -123,7 +119,6 @@ module.exports = {
       })
       .then((response) => {
         colorValidation(response, testMessage, statusCode);
-        expect(response.status).to.eql(statusCode);
       });
   },
 };
