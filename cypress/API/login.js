@@ -20,7 +20,6 @@ module.exports = {
       })
       .then((response) => {
         colorValidation(response, testMessage, statusCode);
-        expect(response.status).to.eql(statusCode);
         return response.body.token;
       });
   },
