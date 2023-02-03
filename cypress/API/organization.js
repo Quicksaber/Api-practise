@@ -1,4 +1,4 @@
-import color from "../support/colorLog";
+import { colorValidation } from "../support/apiValidation";
 import { randomStringGenerator } from "../support/generator";
 import data from "../fixtures/data.json";
 
@@ -22,9 +22,7 @@ module.exports = {
         },
       })
       .then((response) => {
-        typeof response.status != "undefined" && response.status === statusCode
-          ? color.log(`${testMessage}`, "success")
-          : color.log(`${testMessage} ${JSON.stringify(response)}`, "error");
+        colorValidation(response, testMessage, statusCode);
         expect(response.status).to.eql(statusCode);
         return response.body.id;
       });
@@ -45,9 +43,7 @@ module.exports = {
         },
       })
       .then((response) => {
-        typeof response.status != "undefined" && response.status === statusCode
-          ? color.log(`${testMessage}`, "success")
-          : color.log(`${testMessage} ${JSON.stringify(response)}`, "error");
+        colorValidation(response, testMessage, statusCode);
         expect(response.status).to.eql(statusCode);
         let result = response.body.filter((orgName) => orgName.name === name);
         if (result.length > 0) {
@@ -77,9 +73,7 @@ module.exports = {
         },
       })
       .then((response) => {
-        typeof response.status != "undefined" && response.status === statusCode
-          ? color.log(`${testMessage}`, "success")
-          : color.log(`${testMessage} ${JSON.stringify(response)}`, "error");
+        colorValidation(response, testMessage, statusCode);
         expect(response.status).to.eql(statusCode);
       });
   },
@@ -103,9 +97,7 @@ module.exports = {
         },
       })
       .then((response) => {
-        typeof response.status != "undefined" && response.status === statusCode
-          ? color.log(`${testMessage}`, "success")
-          : color.log(`${testMessage} ${JSON.stringify(response)}`, "error");
+        colorValidation(response, testMessage, statusCode);
         expect(response.status).to.eql(statusCode);
       });
   },
@@ -130,9 +122,7 @@ module.exports = {
         },
       })
       .then((response) => {
-        typeof response.status != "undefined" && response.status === statusCode
-          ? color.log(`${testMessage}`, "success")
-          : color.log(`${testMessage} ${JSON.stringify(response)}`, "error");
+        colorValidation(response, testMessage, statusCode);
         expect(response.status).to.eql(statusCode);
       });
   },

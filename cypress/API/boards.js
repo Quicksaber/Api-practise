@@ -1,5 +1,5 @@
 import data from "../fixtures/data.json";
-import color from "../support/colorLog";
+import { colorValidation } from "../support/apiValidation";
 import { randomStringGenerator } from "../support/generator";
 
 module.exports = {
@@ -25,9 +25,7 @@ module.exports = {
         },
       })
       .then((response) => {
-        typeof response.status != "undefined" && response.status === statusCode
-          ? color.log(`${testMessage}`, "success")
-          : color.log(`${testMessage} ${JSON.stringify(response)}`, "error");
+        colorValidation(response, testMessage, statusCode);
         expect(response.status).to.eql(statusCode);
       });
   },
@@ -49,9 +47,7 @@ module.exports = {
         },
       })
       .then((response) => {
-        typeof response.status != "undefined" && response.status === statusCode
-          ? color.log(`${testMessage}`, "success")
-          : color.log(`${testMessage} ${JSON.stringify(response)}`, "error");
+        colorValidation(response, testMessage, statusCode);
         expect(response.status).to.eql(statusCode);
       });
   },
@@ -75,9 +71,7 @@ module.exports = {
         },
       })
       .then((response) => {
-        typeof response.status != "undefined" && response.status === statusCode
-          ? color.log(`${testMessage}`, "success")
-          : color.log(`${testMessage} ${JSON.stringify(response)}`, "error");
+        colorValidation(response, testMessage, statusCode);
         expect(response.status).to.eql(statusCode);
       });
   },
@@ -97,9 +91,7 @@ module.exports = {
         },
       })
       .then((response) => {
-        typeof response.status != "undefined" && response.status === statusCode
-          ? color.log(`${testMessage}`, "success")
-          : color.log(`${testMessage} ${JSON.stringify(response)}`, "error");
+        colorValidation(response, testMessage, statusCode);
         expect(response.status).to.eql(statusCode);
       });
   },

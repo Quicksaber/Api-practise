@@ -1,5 +1,5 @@
 import data from "../fixtures/data.json";
-import color from "../support/colorLog";
+import { colorValidation } from "../support/apiValidation";
 
 module.exports = {
   login({
@@ -19,11 +19,8 @@ module.exports = {
         },
       })
       .then((response) => {
-        typeof response.status != "undefined" && response.status === statusCode
-          ? color.log(`${testMessage}`, "success")
-          : color.log(`${testMessage} ${JSON.stringify(response)}`, "error");
+        colorValidation(response, testMessage, statusCode);
         expect(response.status).to.eql(statusCode);
-
         return response.body.token;
       });
   },
