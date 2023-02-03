@@ -1,34 +1,34 @@
 {
-    "user" : {
-        "email" : "raziel1412@gmail.com",
-        "password"  : "sifra123"
-    },
+  "user": {
+    "email": "raziel1412@gmail.com",
+    "password": "sifra123"
+  },
 
-    "url" : {
-        "apiCypressVivify" : "https://cypress-api.vivifyscrum-stage.com/api/v2/"
-    },
+  "url": {
+    "apiCypressVivify": "https://cypress-api.vivifyscrum-stage.com/api/v2/"
+  },
 
-    "string" : {
-        "emptyString" : "",
-        "spaceString" : " Test",
-        "onlySpace" : "     "
-    },
+  "string": {
+    "emptyString": "",
+    "spaceString": " Test",
+    "onlySpace": "     "
+  },
 
-    "orgName" : {
-        "org1" : "org1"
-    },
+  "orgName": {
+    "org1": "org1"
+  },
 
-    "foreignOrgId" : {
-        "orgId1" : 25205
-    },
+  "foreignOrgId": {
+    "orgId1": 25205
+  },
 
-    "boardTypes" : {
-        "scrumBoard" : "scrum_board",
-        "kanbanBoard" : "kanban_board"
-    },
+  "boardTypes": {
+    "scrumBoard": "scrum_board",
+    "kanbanBoard": "kanban_board"
+  },
 
-    "orgStatus" : {
-        "orgActive" : "active",
-        "orgArchived" : "archived"
-    }
+  "orgStatus": {
+    "orgActive": "active",
+    "orgArchived": "archived"
+  }
 }
