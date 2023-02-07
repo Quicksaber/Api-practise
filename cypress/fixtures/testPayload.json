@@ -1,0 +1,107 @@
+{
+  "testTask1": {
+    "item": {
+      "name": "testTask1",
+      "board_id": 14045,
+      "sprint_id": null,
+      "sprint_backlog_column_id": null,
+      "priority_id": 2,
+      "parent_id": null,
+      "labels": [],
+      "doers": [],
+      "reviewers": [],
+      "type_id": 1,
+      "points_id": null,
+      "taskvalue_id": 1,
+      "checklists": [],
+      "blocking_task_id": null
+    },
+    "prev": null,
+    "next": {
+      "id": 18476,
+      "order": 1
+    },
+    "board_id": 14045,
+    "isOnSprint": true
+  },
+  "testTask2": {
+    "item": {
+      "name": "testTask2",
+      "board_id": 14045,
+      "sprint_id": null,
+      "sprint_backlog_column_id": null,
+      "priority_id": 2,
+      "parent_id": null,
+      "labels": [],
+      "doers": [],
+      "reviewers": [],
+      "type_id": 1,
+      "points_id": null,
+      "taskvalue_id": 1,
+      "checklists": [],
+      "blocking_task_id": null
+    },
+    "prev": {
+      "id": 18477,
+      "order": -998.33
+    },
+    "next": {
+      "id": 18476,
+      "order": 1
+    },
+    "board_id": 14045,
+    "isOnSprint": true
+  },
+  "testTask3": {
+    "item": {
+      "name": "testTask3",
+      "board_id": 14045,
+      "sprint_id": 24170,
+      "sprint_backlog_column_id": null,
+      "priority_id": 2,
+      "parent_id": null,
+      "labels": [],
+      "doers": [],
+      "reviewers": [],
+      "type_id": 1,
+      "points_id": null,
+      "taskvalue_id": 1,
+      "checklists": [],
+      "blocking_task_id": null
+    },
+    "prev": {
+      "id": 18476,
+      "order": -1998.17
+    },
+    "next": {
+      "id": 18477,
+      "order": -1498.14
+    },
+    "board_id": 14045,
+    "isOnSprint": true
+  },
+  "edit": {
+    "id": 18574,
+    "name": "taskoslav",
+    "description": null,
+    "points_id": null,
+    "priority_id": 2,
+    "taskvalue_id": 1,
+    "type_id": 1,
+    "parent_id": null,
+    "board_id": 14106,
+    "sprint_id": null,
+    "sprint_backlog_column_id": 42343,
+    "blocking_task_id": null,
+    "checklist_item_id": null,
+    "doers": [],
+    "reviewers": [],
+    "labels": [
+      {
+        "id": 154457
+      }
+    ],
+    "subtasks": [],
+    "checklists": []
+  }
+}

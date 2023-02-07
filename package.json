@@ -1,6 +1,10 @@
 {
   "devDependencies": {
-    "cypress": "^12.5.0"
+    "cypress": "^12.5.0",
+    "cypress-mochawesome-reporter": "^3.2.3",
+    "mocha": "^10.2.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.2.2"
   },
   "dependencies": {
     "faker": "^5.5.3"
@@ -20,7 +24,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Quicksaber/Api-practise/issues"
-  },
-  "homepage": "https://github.com/Quicksaber/Api-practise#readme",
-  "description": ""
+  }
 }

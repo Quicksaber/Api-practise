@@ -59,7 +59,7 @@ describe("api negative test/boards", () => {
     });
   });
 
-  it("CB-NE-03 Create new board with 3x spaces for name", () => {
+  it("CB-NE-03 Create new board with 5x spaces for name", () => {
     board.createBoard({
       orgId: orgID,
       name: data.string.onlySpace,
@@ -107,7 +107,7 @@ describe("api negative test/boards", () => {
   });
 
   it("CB-NE-09 Get board in another user Org", () => {
-    board.getBoard({
+    board.getAllBoards({
       orgId: data.foreignOrgId.orgId1,
       statusCode: 403,
     });
