@@ -80,4 +80,10 @@ describe("api positive test /boards/tasks", () => {
       boardId: boardID,
     });
   });
+
+  it("CT-PO-04 Create task valid title followed by a hashtag", () => {
+    task.createTask({
+      boardId: boardID,
+    });
+  });
 });
