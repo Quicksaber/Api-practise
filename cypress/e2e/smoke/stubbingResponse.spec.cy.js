@@ -13,12 +13,7 @@ describe("api stubbing", () => {
   it("stubbing test for organizations", () => {
     cy.intercept({
       method: "GET",
-      url: `${Cypress.env("apiCypressVivify")}my-organizations`},
-      
-      {headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-      },
-      fixture: {'myOrgs.json'}
+      url: `${Cypress.env("apiCypressVivify")}my-organizations`,
     });
   });
 });
