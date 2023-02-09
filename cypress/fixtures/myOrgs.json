@@ -1,0 +1,48 @@
+[
+  {
+    "id": 25542,
+    "name": "test",
+    "owner_id": 2969,
+    "avatar": null,
+    "avatar_crop_cords": {},
+    "status": "active",
+    "workdays": [0, 1, 2, 3, 4],
+    "created_at": "2023-02-08 12:39:38",
+    "updated_at": "2023-02-08 12:39:38",
+    "is_owner_trial_expired": 0,
+    "subdomain_id": null,
+    "calendar_starting_day": 7,
+    "original_avatar": null,
+    "pivot": {
+      "user_id": 2969,
+      "organization_id": 25542,
+      "order_position": null,
+      "saved_filters": null
+    },
+    "subdomain": null,
+    "boards": []
+  },
+  {
+    "id": 25543,
+    "name": "test 2",
+    "owner_id": 2969,
+    "avatar": null,
+    "avatar_crop_cords": {},
+    "status": "active",
+    "workdays": [0, 1, 2, 3, 4],
+    "created_at": "2023-02-08 12:41:51",
+    "updated_at": "2023-02-08 12:41:51",
+    "is_owner_trial_expired": 0,
+    "subdomain_id": null,
+    "calendar_starting_day": 7,
+    "original_avatar": null,
+    "pivot": {
+      "user_id": 2969,
+      "organization_id": 25543,
+      "order_position": null,
+      "saved_filters": null
+    },
+    "subdomain": null,
+    "boards": []
+  }
+]
