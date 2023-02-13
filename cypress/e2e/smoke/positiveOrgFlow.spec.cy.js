@@ -5,6 +5,7 @@ import { randomStringGenerator } from "../../support/generator";
 describe("api positive test/orgs", () => {
   beforeEach(() => {
     cy.sessionLogin(Cypress.env("email"), Cypress.env("password"));
+    cy.visit("");
   });
 
   after(() => {

@@ -11,9 +11,45 @@ describe("api stubbing", () => {
   });
 
   it("stubbing test for organizations", () => {
-    cy.intercept({
-      method: "GET",
-      url: `${Cypress.env("apiCypressVivify")}my-organizations`,
-    });
+    cy.intercept(
+      {
+        method: "GET",
+        url: `${Cypress.env("apiCypressVivify")}my-organizations`,
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        },
+      },
+      (req) => {
+        req.reply({ fixture: "myOrgs" });
+      }
+    );
+
+    // cy.intercept(
+    //   {
+    //     method: "GET",
+    //     url: `${Cypress.env("apiCypressVivify")}organizations-data`,
+    //     headers: {
+    //       Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+    //     },
+    //   },
+    //   {
+    //     fixture: "orgData",
+    //   }
+    // ).as('orgData');
+    // cy.visit("");
+
+    cy.intercept(
+      {
+        method: "GET",
+        url: `${Cypress.env("apiCypressVivify")}organizations-data`,
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        },
+      },
+      (req) => {
+        req.reply({ fixture: "orgData" });
+      }
+    ).as("orgData");
+    cy.visit("");
   });
 });
