@@ -1,4 +1,6 @@
 import organization from "../../pageObject/myOrgsPage";
+import board from "../../pageObject/boardsPage";
+import { randomStringGenerator } from "../../support/generator";
 
 describe("create org, board and task flow", () => {
   before(() => {
@@ -7,10 +9,11 @@ describe("create org, board and task flow", () => {
   });
 
   it("UI-PO-01 Create organization with valid string as name", () => {
-    organization.addNewOrganizationButton.should(
-      "have.text",
-      "Add new Organization"
-    );
-    organization.createOrganization(33);
+    organization.createOrganization(randomStringGenerator(5));
+    cy.visit("");
+  });
+
+  it("UI-PO-01 Create board with valid string as name", () => {
+    board.createBoard(randomStringGenerator(55));
   });
 });

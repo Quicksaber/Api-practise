@@ -1,4 +1,5 @@
 import { randomStringGenerator } from "../support/generator";
+import navigation from "../pageObject/navigation";
 
 module.exports = {
   get addNewOrganizationButton() {
@@ -22,11 +23,15 @@ module.exports = {
   get closeButton() {
     return cy.get("button[name='close-new-board-modal-btn']");
   },
+  get confirmationButton() {
+    return cy.get(".vs-c-modal--features-button > .vs-c-btn");
+  },
 
-  createOrganization(nameLenght) {
+  createOrganization(name) {
+    this.addNewOrganizationButton.should("have.text", "Add new Organization");
     this.addNewOrganizationButton.click();
-    this.enterOrganizationNameInput.type(randomStringGenerator(nameLenght));
-    this.nextButton.click();
-    this.nextButton.click();
+    this.enterOrganizationNameInput.type(name);
+    this.nextButton.click().click();
+    this.confirmationButton.click();
   },
 };
